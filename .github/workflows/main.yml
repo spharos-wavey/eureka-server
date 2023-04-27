@@ -52,8 +52,8 @@ jobs:
           key: ${{ secrets.SSH_KEY}}
           port: ${{ secrets.PORT }}
           script: |
-            sudo su
             docker stop eureka-server
+            docker rm eureka-server
             docker rmi ${{secrets.DOCKERHUB_USERNAME}}/eureka-server
             docker pull ${{secrets.DOCKERHUB_USERNAME}}/eureka-server
             docker run --name eureka-server -d -p 8761:8761 ${{secrets.DOCKERHUB_USERNAME}}/eureka-server
